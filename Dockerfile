@@ -7,6 +7,8 @@ RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd6
 RUN apt-get install -y ./google-chrome-stable_current_amd64.deb
 RUN apt-get upgrade -y
 
+RUN apt-get install xvfb -y
+
 RUN useradd -m appuser && chown -R appuser /code
 USER appuser
 
