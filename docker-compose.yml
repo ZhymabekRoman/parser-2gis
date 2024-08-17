@@ -3,7 +3,7 @@ version: '3.8'
 services:
   parser1:
     build: ./
-    restart: no
+    restart: "no"
     volumes:
       - ./:/code
     environment:
@@ -13,7 +13,7 @@ services:
 
   parser2:
     build: ./
-    restart: no
+    restart: "no"
     volumes:
       - ./:/code
     environment:
@@ -23,7 +23,7 @@ services:
 
   parser3:
     build: ./
-    restart: no
+    restart: "no"
     volumes:
       - ./:/code
     environment:
@@ -33,7 +33,7 @@ services:
 
   parser4:
     build: ./
-    restart: no
+    restart: "no"
     volumes:
       - ./:/code
     environment:
@@ -43,7 +43,7 @@ services:
 
   # parser5:
   #   build: ./
-  #   restart: no
+  #   restart: "no"
   #   volumes:
   #     - ./:/code
   #   environment:
@@ -53,7 +53,7 @@ services:
 
   # parser6:
   #   build: ./
-  #   restart: no
+  #   restart: "no"
   #   volumes:
   #     - ./:/code
   #   environment:
@@ -63,7 +63,7 @@ services:
 
   # parser7:
   #   build: ./
-  #   restart: no
+  #   restart: "no"
   #   volumes:
   #     - ./:/code
   #   environment:
@@ -73,7 +73,7 @@ services:
 
   # parser8:
   #   build: ./
-  #   restart: no
+  #   restart: "no"
   #   volumes:
   #     - ./:/code
   #   environment:
@@ -83,7 +83,7 @@ services:
 
   # parser9:
   #   build: ./
-  #   restart: no
+  #   restart: "no"
   #   volumes:
   #     - ./:/code
   #   environment:
@@ -93,7 +93,7 @@ services:
 
   # parser10:
   #   build: ./
-  #   restart: no
+  #   restart: "no"
   #   volumes:
   #     - ./:/code
   #   environment:
@@ -103,7 +103,7 @@ services:
 
   # parser11:
   #   build: ./
-  #   restart: no
+  #   restart: "no"
   #   volumes:
   #     - ./:/code
   #   environment:
@@ -113,7 +113,7 @@ services:
 
   # parser12:
   #   build: ./
-  #   restart: no
+  #   restart: "no"
   #   volumes:
   #     - ./:/code
   #   environment:
@@ -123,7 +123,7 @@ services:
 
   # parser13:
   #   build: ./
-  #   restart: no
+  #   restart: "no"
   #   volumes:
   #     - ./:/code
   #   environment:
@@ -133,7 +133,7 @@ services:
 
   # parser14:
   #   build: ./
-  #   restart: no
+  #   restart: "no"
   #   volumes:
   #     - ./:/code
   #   environment:
@@ -143,7 +143,7 @@ services:
 
   # parser15:
   #   build: ./
-  #   restart: no
+  #   restart: "no"
   #   volumes:
   #     - ./:/code
   #   environment:
@@ -153,7 +153,7 @@ services:
 
   # parser16:
   #   build: ./
-  #   restart: no
+  #   restart: "no"
   #   volumes:
   #     - ./:/code
   #   environment:
@@ -163,7 +163,7 @@ services:
 
   # parser17:
   #   build: ./
-  #   restart: no
+  #   restart: "no"
   #   volumes:
   #     - ./:/code
   #   environment:
@@ -173,7 +173,7 @@ services:
 
   # parser18:
   #   build: ./
-  #   restart: no
+  #   restart: "no"
   #   volumes:
   #     - ./:/code
   #   environment:
@@ -183,7 +183,7 @@ services:
 
   # parser19:
   #   build: ./
-  #   restart: no
+  #   restart: "no"
   #   volumes:
   #     - ./:/code
   #   environment:
@@ -193,7 +193,7 @@ services:
 
   # parser20:
   #   build: ./
-  #   restart: no
+  #   restart: "no"
   #   volumes:
   #     - ./:/code
   #   environment:
