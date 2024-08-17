@@ -15,48 +15,59 @@ if TYPE_CHECKING:
     from .options import ChromeOptions
 
 
-class ChromeBrowser():
+class ChromeBrowser:
     """Chrome Browser with temporary profile.
 
     Args:
         chrome_options: Chrome options.
     """
+
     def __init__(self, chrome_options: ChromeOptions) -> None:
-        binary_path = (chrome_options.binary_path
-                       if chrome_options.binary_path else locate_chrome_path())
+        binary_path = (
+            chrome_options.binary_path
+            if chrome_options.binary_path
+            else locate_chrome_path()
+        )
 
         if not binary_path:
             raise ChromePathNotFound
 
-        logger.debug('Запуск Chrome Браузера.')
+        logger.debug("Запуск Chrome Браузера.")
 
         self._profile_path = tempfile.mkdtemp()
         self._remote_port = free_port()
         self._chrome_cmd = [
             binary_path,
-            f'--remote-debugging-port={self._remote_port}',
-            f'--user-data-dir={self._profile_path}', '--no-default-browser-check',
-            '--no-first-run', '--no-sandbox', '--disable-fre',
-            '--remote-allow-origins=*',
-            f'--js-flags=--expose-gc --max-old-space-size={chrome_options.memory_limit}',
+            f"--remote-debugging-port={self._remote_port}",
+            f"--user-data-dir={self._profile_path}",
+            "--no-default-browser-check",
+            "--no-first-run",
+            "--no-sandbox",
+            "--disable-fre",
+            "--remote-allow-origins=*",
+            f"--js-flags=--expose-gc --max-old-space-size={chrome_options.memory_limit}",
         ]
 
         if chrome_options.start_maximized:
-            self._chrome_cmd.append('--start-maximized')
+            self._chrome_cmd.append("--start-maximized")
 
         if chrome_options.headless:
-            logger.debug('В Chrome установлен в скрытый режим.')
-            self._chrome_cmd.append('--headless')
-            self._chrome_cmd.append('--disable-gpu')
+            logger.debug("В Chrome установлен в скрытый режим.")
+            self._chrome_cmd.append("--headless")
+            self._chrome_cmd.append("--disable-gpu")
 
         if chrome_options.disable_images:
-            logger.debug('В Chrome отключены изображения.')
-            self._chrome_cmd.append('--blink-settings=imagesEnabled=false')
+            logger.debug("В Chrome отключены изображения.")
+            self._chrome_cmd.append("--blink-settings=imagesEnabled=false")
 
         if chrome_options.silent_browser:
-            logger.debug('В Chrome отключен вывод отладочной информации.')
-            self._proc = subprocess.Popen(self._chrome_cmd, shell=False,
-                                          stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
+            logger.debug("В Chrome отключен вывод отладочной информации.")
+            self._proc = subprocess.Popen(
+                self._chrome_cmd,
+                shell=False,
+                stderr=subprocess.DEVNULL,
+                stdout=subprocess.DEVNULL,
+            )
         else:
             self._proc = subprocess.Popen(self._chrome_cmd, shell=False)
 
@@ -78,7 +89,7 @@ class ChromeBrowser():
 
     def close(self) -> None:
         """Close browser and delete temporary profile."""
-        logger.debug('Завершение работы Chrome Браузера.')
+        logger.debug("Завершение работы Chrome Браузера.")
 
         # Close the browser
         self._proc.terminate()
@@ -89,4 +100,4 @@ class ChromeBrowser():
 
     def __repr__(self) -> str:
         classname = self.__class__.__name__
-        return f'{classname}(arguments={self._chrome_cmd!r})'
+        return f"{classname}(arguments={self._chrome_cmd!r})"

@@ -1,0 +1,202 @@
+version: '3.8'
+
+services:
+  parser1:
+    build: ./
+    restart: no
+    volumes:
+      - ./:/code
+    environment:
+      - "TZ=Asia/Aqtau"
+    stop_grace_period: 2m
+    command: python3 -m parser_2gis --url /code/input1 --output /code/output1 --format csv  --parser.max-records 100000 --chrome.headless yes --chrome.silent-browser no
+
+  parser2:
+    build: ./
+    restart: no
+    volumes:
+      - ./:/code
+    environment:
+      - "TZ=Asia/Aqtau"
+    stop_grace_period: 2m
+    command: python3 -m parser_2gis --url /code/input2 --output /code/output2 --format csv  --parser.max-records 100000 --chrome.headless yes --chrome.silent-browser no
+
+  parser3:
+    build: ./
+    restart: no
+    volumes:
+      - ./:/code
+    environment:
+      - "TZ=Asia/Aqtau"
+    stop_grace_period: 2m
+    command: python3 -m parser_2gis --url /code/input3 --output /code/output3 --format csv  --parser.max-records 100000 --chrome.headless yes --chrome.silent-browser no
+
+  parser4:
+    build: ./
+    restart: no
+    volumes:
+      - ./:/code
+    environment:
+      - "TZ=Asia/Aqtau"
+    stop_grace_period: 2m
+    command: python3 -m parser_2gis --url /code/input4 --output /code/output4 --format csv  --parser.max-records 100000 --chrome.headless yes --chrome.silent-browser no
+
+  # parser5:
+  #   build: ./
+  #   restart: no
+  #   volumes:
+  #     - ./:/code
+  #   environment:
+  #     - "TZ=Asia/Aqtau"
+  #   stop_grace_period: 2m
+  #   command: python3 -m parser_2gis --url /code/input5 --output /code/output5 --format csv  --parser.max-records 100000 --chrome.headless yes --chrome.silent-browser no
+
+  # parser6:
+  #   build: ./
+  #   restart: no
+  #   volumes:
+  #     - ./:/code
+  #   environment:
+  #     - "TZ=Asia/Aqtau"
+  #   stop_grace_period: 2m
+  #   command: python3 -m parser_2gis --url /code/input6 --output /code/output6 --format csv  --parser.max-records 100000 --chrome.headless yes --chrome.silent-browser no
+
+  # parser7:
+  #   build: ./
+  #   restart: no
+  #   volumes:
+  #     - ./:/code
+  #   environment:
+  #     - "TZ=Asia/Aqtau"
+  #   stop_grace_period: 2m
+  #   command: python3 -m parser_2gis --url /code/input7 --output /code/output7 --format csv  --parser.max-records 100000 --chrome.headless yes --chrome.silent-browser no
+
+  # parser8:
+  #   build: ./
+  #   restart: no
+  #   volumes:
+  #     - ./:/code
+  #   environment:
+  #     - "TZ=Asia/Aqtau"
+  #   stop_grace_period: 2m
+  #   command: python3 -m parser_2gis --url /code/input8 --output /code/output8 --format csv  --parser.max-records 100000 --chrome.headless yes --chrome.silent-browser no
+
+  # parser9:
+  #   build: ./
+  #   restart: no
+  #   volumes:
+  #     - ./:/code
+  #   environment:
+  #     - "TZ=Asia/Aqtau"
+  #   stop_grace_period: 2m
+  #   command: python3 -m parser_2gis --url /code/input9 --output /code/output9 --format csv  --parser.max-records 100000 --chrome.headless yes --chrome.silent-browser no
+
+  # parser10:
+  #   build: ./
+  #   restart: no
+  #   volumes:
+  #     - ./:/code
+  #   environment:
+  #     - "TZ=Asia/Aqtau"
+  #   stop_grace_period: 2m
+  #   command: python3 -m parser_2gis --url /code/input10 --output /code/output10 --format csv  --parser.max-records 100000 --chrome.headless yes --chrome.silent-browser no
+
+  # parser11:
+  #   build: ./
+  #   restart: no
+  #   volumes:
+  #     - ./:/code
+  #   environment:
+  #     - "TZ=Asia/Aqtau"
+  #   stop_grace_period: 2m
+  #   command: python3 -m parser_2gis --url /code/input11 --output /code/output11 --format csv  --parser.max-records 100000 --chrome.headless yes --chrome.silent-browser no
+
+  # parser12:
+  #   build: ./
+  #   restart: no
+  #   volumes:
+  #     - ./:/code
+  #   environment:
+  #     - "TZ=Asia/Aqtau"
+  #   stop_grace_period: 2m
+  #   command: python3 -m parser_2gis --url /code/input12 --output /code/output12 --format csv  --parser.max-records 100000 --chrome.headless yes --chrome.silent-browser no
+
+  # parser13:
+  #   build: ./
+  #   restart: no
+  #   volumes:
+  #     - ./:/code
+  #   environment:
+  #     - "TZ=Asia/Aqtau"
+  #   stop_grace_period: 2m
+  #   command: python3 -m parser_2gis --url /code/input13 --output /code/output13 --format csv  --parser.max-records 100000 --chrome.headless yes --chrome.silent-browser no
+
+  # parser14:
+  #   build: ./
+  #   restart: no
+  #   volumes:
+  #     - ./:/code
+  #   environment:
+  #     - "TZ=Asia/Aqtau"
+  #   stop_grace_period: 2m
+  #   command: python3 -m parser_2gis --url /code/input14 --output /code/output14 --format csv  --parser.max-records 100000 --chrome.headless yes --chrome.silent-browser no
+
+  # parser15:
+  #   build: ./
+  #   restart: no
+  #   volumes:
+  #     - ./:/code
+  #   environment:
+  #     - "TZ=Asia/Aqtau"
+  #   stop_grace_period: 2m
+  #   command: python3 -m parser_2gis --url /code/input15 --output /code/output15 --format csv  --parser.max-records 100000 --chrome.headless yes --chrome.silent-browser no
+
+  # parser16:
+  #   build: ./
+  #   restart: no
+  #   volumes:
+  #     - ./:/code
+  #   environment:
+  #     - "TZ=Asia/Aqtau"
+  #   stop_grace_period: 2m
+  #   command: python3 -m parser_2gis --url /code/input16 --output /code/output16 --format csv  --parser.max-records 100000 --chrome.headless yes --chrome.silent-browser no
+
+  # parser17:
+  #   build: ./
+  #   restart: no
+  #   volumes:
+  #     - ./:/code
+  #   environment:
+  #     - "TZ=Asia/Aqtau"
+  #   stop_grace_period: 2m
+  #   command: python3 -m parser_2gis --url /code/input17 --output /code/output17 --format csv  --parser.max-records 100000 --chrome.headless yes --chrome.silent-browser no
+
+  # parser18:
+  #   build: ./
+  #   restart: no
+  #   volumes:
+  #     - ./:/code
+  #   environment:
+  #     - "TZ=Asia/Aqtau"
+  #   stop_grace_period: 2m
+  #   command: python3 -m parser_2gis --url /code/input18 --output /code/output18 --format csv  --parser.max-records 100000 --chrome.headless yes --chrome.silent-browser no
+
+  # parser19:
+  #   build: ./
+  #   restart: no
+  #   volumes:
+  #     - ./:/code
+  #   environment:
+  #     - "TZ=Asia/Aqtau"
+  #   stop_grace_period: 2m
+  #   command: python3 -m parser_2gis --url /code/input19 --output /code/output19 --format csv  --parser.max-records 100000 --chrome.headless yes --chrome.silent-browser no
+
+  # parser20:
+  #   build: ./
+  #   restart: no
+  #   volumes:
+  #     - ./:/code
+  #   environment:
+  #     - "TZ=Asia/Aqtau"
+  #   stop_grace_period: 2m
+  #   command: python3 -m parser_2gis --url /code/input20 --output /code/output20 --format csv  --parser.max-records 100000 --chrome.headless yes --chrome.silent-browser no
