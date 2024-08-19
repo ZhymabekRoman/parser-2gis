@@ -3,27 +3,78 @@ version: '3.8'
 services:
   parser1:
     build: ./
+    depends_on:
+      wgcf1:
+        condition: service_healthy
     restart: "no"
     volumes:
       - ./:/code
     environment:
       - "TZ=Asia/Aqtau"
+    network_mode: service:wgcf1
     stop_grace_period: 2m
     command: python3 -m parser_2gis --url /code/input1 --output /code/output1 --format csv  --parser.max-records 100000
 
+  wgcf1:
+    cap_add:
+      - NET_ADMIN
+    healthcheck:
+      interval: 5s
+      retries: 10
+      test: curl -fs https://www.cloudflare.com/cdn-cgi/trace | grep -q -E 'warp=(on|plus)' && exit 0 || exit 1
+      timeout: 45s
+    image: neilpang/wgcf-docker:latest
+    privileged: true
+    restart: always
+    sysctls:
+      net.ipv6.conf.all.disable_ipv6: 0
+    volumes:
+      - ./service/wgcf1:/wgcf
+      - /lib/modules:/lib/modules
+      - /etc/localtime:/etc/localtime:ro
+
   parser2:
     build: ./
+    depends_on:
+      wgcf2:
+        condition: service_healthy
     restart: "no"
     volumes:
       - ./:/code
+    network_mode: service:wgcf2
     environment:
       - "TZ=Asia/Aqtau"
     stop_grace_period: 2m
     command: python3 -m parser_2gis --url /code/input2 --output /code/output2 --format csv  --parser.max-records 100000
 
+  wgcf2:
+    cap_add:
+      - NET_ADMIN
+    depends_on:
+      wgcf1:
+        condition: service_healthy
+    healthcheck:
+      interval: 5s
+      retries: 10
+      test: curl -fs https://www.cloudflare.com/cdn-cgi/trace | grep -q -E 'warp=(on|plus)' && exit 0 || exit 1
+      timeout: 45s
+    image: neilpang/wgcf-docker:latest
+    privileged: true
+    restart: always
+    sysctls:
+      net.ipv6.conf.all.disable_ipv6: 0
+    volumes:
+      - ./service/wgcf1:/wgcf
+      - /lib/modules:/lib/modules
+      - /etc/localtime:/etc/localtime:ro
+
   parser3:
     build: ./
+    depends_on:
+      wgcf3:
+        condition: service_healthy
     restart: "no"
+    network_mode: service:wgcf3
     volumes:
       - ./:/code
     environment:
@@ -31,9 +82,34 @@ services:
     stop_grace_period: 2m
     command: python3 -m parser_2gis --url /code/input3 --output /code/output3 --format csv  --parser.max-records 100000
 
+  wgcf3:
+    cap_add:
+      - NET_ADMIN
+    depends_on:
+      wgcf2:
+        condition: service_healthy
+    healthcheck:
+      interval: 5s
+      retries: 10
+      test: curl -fs https://www.cloudflare.com/cdn-cgi/trace | grep -q -E 'warp=(on|plus)' && exit 0 || exit 1
+      timeout: 45s
+    image: neilpang/wgcf-docker:latest
+    privileged: true
+    restart: always
+    sysctls:
+      net.ipv6.conf.all.disable_ipv6: 0
+    volumes:
+      - ./service/wgcf1:/wgcf
+      - /lib/modules:/lib/modules
+      - /etc/localtime:/etc/localtime:ro
+
   parser4:
     build: ./
+    depends_on:
+      wgcf4:
+        condition: service_healthy
     restart: "no"
+    network_mode: service:wgcf4
     volumes:
       - ./:/code
     environment:
@@ -41,6 +117,26 @@ services:
     stop_grace_period: 2m
     command: python3 -m parser_2gis --url /code/input4 --output /code/output4 --format csv  --parser.max-records 100000
 
+  wgcf4:
+    cap_add:
+      - NET_ADMIN
+    depends_on:
+      wgcf3:
+        condition: service_healthy
+    healthcheck:
+      interval: 5s
+      retries: 10
+      test: curl -fs https://www.cloudflare.com/cdn-cgi/trace | grep -q -E 'warp=(on|plus)' && exit 0 || exit 1
+      timeout: 45s
+    image: neilpang/wgcf-docker:latest
+    privileged: true
+    restart: always
+    sysctls:
+      net.ipv6.conf.all.disable_ipv6: 0
+    volumes:
+      - ./service/wgcf1:/wgcf
+      - /lib/modules:/lib/modules
+      - /etc/localtime:/etc/localtime:ro
   # parser5:
   #   build: ./
   #   restart: "no"
